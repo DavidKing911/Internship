@@ -8,15 +8,21 @@
 <body>
     <h1>PHP - Task 1</h1>
     <?php
-        $str = "string";
-        $bl = true;
-        $num = 21;
-
-        if (is_int($num)) {
-            echo "Это число";
-        } else {
-            echo "Это не число";
+        $arr = ['Egor', 'Nikita','Vlad','Egor','Petr'];
+        $subString = 'Egor';
+        $newArrA = [];
+        $newArrB = [];
+        
+        for ($i = 0; $i < count($arr); $i++) {
+            if ($arr[$i] == $subString) {
+                $newArrA[] = $arr[$i];
+            } else {
+                $newArrB[] = $arr[$i];
+            }
         }
+
+        print_r($newArrA);
+        print_r($newArrB);
     ?>
 </body>
 </html>
