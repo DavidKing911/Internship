@@ -8,13 +8,13 @@
 <body>
     <h1>PHP - Task 1</h1>
     <?php
-        $arr = ['Egor', 'Nikita','Vlad','Egor','Petr'];
-        $subString = 'Egor';
+        $arr = ["Egordf", "Nikita","Vlad","Egor","Petr", "asdfegorsdf"];
+        $subString = "Egor";
         $newArrA = [];
         $newArrB = [];
         
         for ($i = 0; $i < count($arr); $i++) {
-            if ($arr[$i] == $subString) {
+            if (str_contains(strtolower($arr[$i]), strtolower($subString))) {
                 $newArrA[] = $arr[$i];
             } else {
                 $newArrB[] = $arr[$i];

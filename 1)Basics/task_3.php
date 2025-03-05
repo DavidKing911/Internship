@@ -8,8 +8,21 @@
 <body>
     <h1>PHP - Task 3</h1>
     <?php
-        $nick = "fdsgdgddhghfg";
-        if (strlen($nick) % 2 == 0) {
+        $nick = "fdsgdgussddupuyoikjlddhghfg";
+        
+        function calculatingUniqueness($nickname) {
+            $uniqueNick = "";
+            for ($i = 0; $i < strlen($nickname); $i++) {
+                if (str_contains(strtolower($uniqueNick), strtolower($nickname[$i])) == false) {
+                    $uniqueNick .= $nickname[$i];
+                }
+            }
+            return $uniqueNick;
+        }
+
+        $uniqNickname = calculatingUniqueness($nick);
+
+        if (strlen($uniqNickname) % 2 == 0) {
             echo "Girl!";
         } else {
             echo "Boy!";
