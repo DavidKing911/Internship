@@ -8,7 +8,8 @@
 <body>
     <h1>PHP - Task 3</h1>
     <?php
-        require_once 'Classes_1.php';
+        require_once('Printer.php');
+        require_once('ScreenOutput.php');
         
         $printer1 = new Printer("Текст для вывода на принтер");
         $printer1->getStr();
