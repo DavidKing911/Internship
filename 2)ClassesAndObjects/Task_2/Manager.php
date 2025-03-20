@@ -1,16 +1,16 @@
 <?php
     class Manager {
         private $name;
-        public function __construct($name) {
+        public function __construct(string $name) {
             $this->name = $name;
         }
 
-        public function getName() {
+        public function getName(): string {
             return $this->name;
         }
         
-        public function transAnimal($animal, Zookeeper $zookeeper, Zoo $zoo) {
-            $zookeeper->putAnimalInCage($animal, $zoo);
+        public function transAnimal(Animal $animal, Zookeeper $zookeeper): void {
+            $zookeeper->putAnimalInCage($animal);
         }
     }
 ?>

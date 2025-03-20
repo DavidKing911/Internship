@@ -1,24 +1,14 @@
 <?php
+    require_once('CageHelper.php');
     class CageForBird {
+        use CageHelper;
         private $birds = [];
-        public function putItInACage(Bird $bird) {
+        public function put(Bird $bird): void {
             $this->birds[] = $bird;
         }
 
-        public function putItOutACage($birdName, $birdAge) {
-            foreach ($this->birds as $key => $bird) {
-                if ($bird->getName() == $birdName && $bird->getAge() == $birdAge) {
-                    unset($this->birds[$key]);
-                }
-            }
-        }
-
-        public function selectAnimal($birdName, $birdAge) {
-            foreach ($this->birds as $bird) {
-                if ($bird->getName() == $birdName && $bird->getAge() == $birdAge) {
-                    return $bird;
-                }
-            }
+        public function getArr(): array {
+            return $this->birds;
         }
     }
 ?>

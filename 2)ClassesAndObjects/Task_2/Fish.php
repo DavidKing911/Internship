@@ -7,11 +7,11 @@
             $this->tail = $tail;
         }
 
-        public function getTail() {
+        public function getTail(): string {
             return $this->tail;
         }
 
-        public function setTail($tail) {
+        public function setTail($tail): void {
             $this->tail = $tail;
         }
     }
