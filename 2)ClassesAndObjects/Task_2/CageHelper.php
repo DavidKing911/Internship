@@ -11,7 +11,6 @@
         public function selectAnimal(string $animalName, int $animalAge, array $animals): mixed {
             foreach ($animals as $animal) {
                 if ($animal->getName() == $animalName && $animal->getAge() == $animalAge) {
-                    echo $animal->getName();
                     return $animal;
                 }
             }

@@ -34,6 +34,14 @@
             return "Животное с таким именем и возрастом не найдено!";
         }
 
+        public function getFishByScale(string $scaleColor, string $scaleSize){
+            foreach ($this->zoo->getCages() as $cage) {
+                if ($cage instanceof CageForFish) {
+                    return $cage->getFish($scaleColor, $scaleSize);
+                }
+            }
+        }
+
         private function putFish(Animal $animalObject): void {
             $count = 0;
             foreach ($this->zoo->getCages() as $cage) {
@@ -52,18 +60,29 @@
         }
 
         private function putBeast(Animal $animalObject): void {
+            $count = 0;
             foreach ($this->zoo->getCages() as $cage) {
                 if ($cage instanceof CageForBeast) {
-                    $cage->put($animalObject);
+                    if (count($cage->getArr()) < 3) {
+                        $cage->put($animalObject);
+                        break;
+                    } else {
+                        echo "Для зверя с именем - " . $animalObject->getName() . " нет места!";
+                        break;
+                    }
                 } else {
-                    $cageForBeast = new CageForBeast();
-                    $cageForBeast->put($animalObject);
-                    $this->zoo->addCage(new CageForBeast);
+                    $count++;
                 }
+            }
+            if ($count == count($this->zoo->getCages())) {
+                $cageForBeast = new CageForBeast();
+                $cageForBeast->put($animalObject);
+                $this->zoo->addCage($cageForBeast);
             }
         }
 
         private function putBird(Animal $animalObject): void {
+            $count = 0;
             foreach ($this->zoo->getCages() as $cage) {
                 if ($cage instanceof CageForBird) {
                     $cage->put($animalObject);
@@ -72,6 +91,11 @@
                     $cageForBird->put($animalObject);
                     $this->zoo->addCage(new CageForBird);
                 }
+            }
+            if ($count == count($this->zoo->getCages())) {
+                $cageForBird = new CageForBird();
+                $cageForBird->put($animalObject);
+                $this->zoo->addCage($cageForBird);
             }
         }
     }

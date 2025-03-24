@@ -23,10 +23,10 @@
         }
 
         public function __toString() {
-            return "{$this->helperName($this->name)} {$this->name}, для нашего проекта вы{$this->helperAge($this->age)}!";
+            return "{$this->nameProcessing($this->name)} {$this->name}, для нашего проекта вы{$this->ageProcessing($this->age)}!";
         }
 
-        private function helperAge($age) {
+        private function ageProcessing($age) {
             if ($age < 18 || $age > 60) {
                 return ", к большом сожалению, не подходите";
             } else {
@@ -34,7 +34,7 @@
             }
         }
 
-        private function helperName($name) {
+        private function nameProcessing($name) {
             if (strtolower($name) == "female" || strtolower($name) == "женский") {
                 return "Мисс";
             } else {

@@ -18,7 +18,9 @@
         
         $wolf = new Beast("Bru", 3, "Короткий");
         $lion = new Beast("Simba", 7, "Длинный");
-        $fish = new Fish("Dory", 6, "Маленький");
+        $bear = new Beast("Vinny", 12, "Короткий");
+        $tiger = new Beast("Jack", 5, "Короткий");
+        $fish = new Fish("Dory", 6, "Маленький", "Коричнево-серый", "Зубчатая");
 
         $cageForBeast = new CageForBeast();
         $cageForBeast->put($lion);
@@ -31,8 +33,11 @@
         $manager = new Manager("John");
         $manager->transAnimal($wolf, $zookeeper);
         $manager->transAnimal($fish, $zookeeper);
+        $manager->transAnimal($bear, $zookeeper);
+        $manager->transAnimal($tiger, $zookeeper);
 
-        print_r($zookeeper->getAnimalByNameAndAge("Dory", 6));
+        // print_r($zookeeper->getAnimalByNameAndAge("Dory", 6));
+        // print_r($zookeeper->getFishByScale("Коричнево-серый", "Зубчаая"));
     ?>
 </body>
 </html>

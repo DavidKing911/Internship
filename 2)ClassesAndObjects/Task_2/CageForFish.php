@@ -10,5 +10,14 @@
         public function getArr(): array {
             return $this->fishes;
         }
+
+        public function getFish(string $scaleColor, string $scaleSize): Fish|string {
+            foreach ($this->fishes as $fish) {
+                if ($fish->getScaleColor() == $scaleColor && $fish->getScaleSize() == $scaleSize) {
+                    return $fish;
+                }
+            }
+            return "Такой рыбы не существует";
+        }
     }
 ?>
