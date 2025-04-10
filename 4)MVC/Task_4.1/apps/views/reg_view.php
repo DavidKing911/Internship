@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>MVC</title>
 </head>
 <body>
-    <form action="../Backend/main.php" method="POST">
+    <form action="response.php" method="POST">
         <label>Имя:</label>
         <input name="name" type="text"></br></br>
         <label>Возраст:</label>

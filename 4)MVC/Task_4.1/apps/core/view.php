@@ -3,6 +3,6 @@ class View
 {
 	function generate($content_view)
 	{
-		include 'application/views/'.$content_view;
+		include 'apps/views/'.$content_view;
 	}
 }
