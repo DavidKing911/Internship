@@ -6,7 +6,7 @@
     <title>MVC</title>
 </head>
 <body>
-    <form action="response.php" method="POST">
+    <form action="/Task_4.1/index.php/users/setData" method="POST">
         <label>Имя:</label>
         <input name="name" type="text"></br></br>
         <label>Возраст:</label>

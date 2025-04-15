@@ -7,41 +7,39 @@ class Route
 		$controller_name = 'Main';
 		$action_name = 'index';
 		
-		$routes = explode('/Internship/4)MVC/Task_4.1/', $_SERVER['REQUEST_URI']);
+		$routes = explode('/', $_SERVER['REQUEST_URI']);
+
 
 		// получаем имя контроллера
-		if ( !empty($routes[1]) )
+		if ( !empty($routes[3]) )
 		{	
-			$controller_name = $routes[1];
+			$controller_name = $routes[3];
 		}
 		
 		// получаем имя экшена
-		if ( !empty($routes[2]) )
+		if ( !empty($routes[4]) )
 		{
-			$action_name = $routes[2];
+			$action_name = $routes[4];
 		}
+
 
 		// добавляем префиксы
 		$model_name = 'Model_'.$controller_name;
 		$controller_name = 'Controller_'. ucfirst($controller_name);
 		$action_name = 'action_'.$action_name;
 
-		echo $controller_name . '</br>';
-		echo $action_name  . '</br>';
-
 		// подцепляем файл с классом модели (файла модели может и не быть)
 
 		$model_file = strtolower($model_name).'.php';
-		$model_path = "../models/".$model_file;
+		$model_path = "apps/models/".$model_file;
 		if(file_exists($model_path))
 		{
-			include "../models/".$model_file;
+			include "apps/models/".$model_file;
 		}
 
 		// подцепляем файл с классом контроллера
 		$controller_file = strtolower($controller_name);
-		$controller_path = "apps/controllers/".$controller_file;
-
+		$controller_path = "apps/controllers/".$controller_file.".php";
 		if(file_exists($controller_path))
 		{
 			include $controller_path;
@@ -51,7 +49,7 @@ class Route
 			// Route::ErrorPage404();
 		}
 		// создаем контроллер
-		$controller = new (mb_substr($controller_name, 0, -4));
+		$controller = new $controller_name;
 		$action = $action_name;
 		
 		if(method_exists($controller, $action))
