@@ -11,8 +11,7 @@
                 if ( !empty($users) )
                 {	
                     foreach ($users as $user) {
-                        echo "Name - " . $user['name'] . ", Age - " . $user['age'] . ", Gender - " . $user['gender'];
-                        "<br>";
+                        echo "Name - " . $user[1] . ", Age - " . $user[3] . ", Gender - " . $user[5] . "<br>";
                     }
                 } else {
                     echo '<p>В базе данных нет никаких пользователей</p>';

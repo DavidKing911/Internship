@@ -1,7 +1,7 @@
 <?php
 class Route
 {
-	static function start()
+	static function start($model_users)
 	{
 		// контроллер и действие по умолчанию
 		$controller_name = 'Main';
@@ -32,9 +32,12 @@ class Route
 
 		$model_file = strtolower($model_name).'.php';
 		$model_path = "apps/models/".$model_file;
+		
 		if(file_exists($model_path))
 		{
-			include "apps/models/".$model_file;
+			if ($model_name != "Model_users") {
+				include "apps/models/".$model_file;
+			}
 		}
 
 		// подцепляем файл с классом контроллера
@@ -46,29 +49,36 @@ class Route
 		}
 		else
 		{
-			// Route::ErrorPage404();
+			Route::ErrorPage404();
 		}
 		// создаем контроллер
-		$controller = new $controller_name;
-		$action = $action_name;
-		
+		if ($controller_name == "Controller_Users") {
+			$filename = "apps/db/users.txt";
+			$file_content = file_get_contents($filename);
+			$controller = new $controller_name($model_users, $file_content);
+			$action = $action_name;
+		} else {
+			$controller = new $controller_name;
+			$action = $action_name;
+		}
+
+
 		if(method_exists($controller, $action))
 		{
-			// вызываем действие контроллера
 			$controller->$action();
 		}
 		else
 		{
-			// Route::ErrorPage404();
+			Route::ErrorPage404();
 		}
 	
 	}
 	
-	// static function ErrorPage404()
-	// {
-    //     $host = 'http://'.$_SERVER['HTTP_HOST'].'/';
-    //     header('HTTP/1.1 404 Not Found');
-	// 	header("Status: 404 Not Found");
-	// 	header('Location:'.$host.'404');
-    // }
+	static function ErrorPage404()
+	{
+        $host = 'http://'.$_SERVER['HTTP_HOST'].'/';
+        header('HTTP/1.1 404 Not Found');
+		header("Status: 404 Not Found");
+		header('Location:'.$host.'404');
+    }
 }
