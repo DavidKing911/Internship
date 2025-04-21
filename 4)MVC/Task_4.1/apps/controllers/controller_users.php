@@ -1,25 +1,31 @@
 <?php
-
 class Controller_Users extends Controller
 {
-	private $usersData;
-	
-    function __construct(array $model_users, string $str)
+    function __construct()
 	{
-		$this->model = $model_users[0];
-		$this->view = $model_users[1];
-		$this->usersData = $str;
+		$this->model = new Model_Users();
+		$this->view = new View();
 	}
 
 	function action_getData()
 	{
-		$users = $this->model->get_users($this->usersData);
+		$users = $this->model->get_data();
 		$this->view->generate("users_view.php", $users);
 	}
 
     function action_setData()
 	{
-        $this->model->set_data($_POST['name'], $_POST['age'], $_POST['gender']);
+        $user = $this->model->set_data($_POST['name'], $_POST['age'], $_POST['gender']);
+		if ($user == null) {
+			echo "Пользователь слишком молод для добавления в базу данных!";
+		} else if (is_array($user)) {
+			foreach ($user as $error) {
+				echo $error;
+			}
+		} else {
+			echo "<b>Пользователь успешно добавлен</b></br>";
+			file_put_contents("apps/db/users.txt", $user, FILE_APPEND);
+		}
 		$this->view->generate("response_view.php");
 	}
 

@@ -1,17 +1,23 @@
 <?php
 class Model_Users extends Model
 {
-	public function set_data($name, $age, $gender)
+	public function set_data($name, $age, $gender): string|null|array
 	{	
-		$user = ",name " . $name . " age " . $age . " gender " . $gender . " ";
-		file_put_contents("apps/db/users.txt", $user, FILE_APPEND);
+		if ($age < 10 && (strtolower($gender) == "мужской" || strtolower($gender) == "male")) {
+			return null;
+		} else {
+			$arr_errors = user_verification($name, $age, $gender);
+			if (empty($arr_errors)) {
+				$user = ",name " . $name . " age " . $age . " gender " . $gender . " ";
+				return add_user_method($user);
+			} else {
+				return $arr_errors;
+			}
+		}
+	
 	}
 
-	public function get_users(string $usersData) {
-		$users = explode(",", $usersData);
-		foreach ($users as $key => $user) {
-			$users[$key] = explode(" ", $user);
-		}
-		return $users;
+	public function get_data(): array {
+		return get_users_method();
 	}
 }

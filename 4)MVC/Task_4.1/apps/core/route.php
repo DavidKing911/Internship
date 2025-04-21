@@ -1,7 +1,7 @@
 <?php
 class Route
 {
-	static function start($model_users)
+	static function start()
 	{
 		// контроллер и действие по умолчанию
 		$controller_name = 'Main';
@@ -35,14 +35,13 @@ class Route
 		
 		if(file_exists($model_path))
 		{
-			if ($model_name != "Model_users") {
-				include "apps/models/".$model_file;
-			}
+			include "apps/models/".$model_file;
 		}
-
+		
 		// подцепляем файл с классом контроллера
 		$controller_file = strtolower($controller_name);
 		$controller_path = "apps/controllers/".$controller_file.".php";
+		
 		if(file_exists($controller_path))
 		{
 			include $controller_path;
@@ -51,17 +50,9 @@ class Route
 		{
 			Route::ErrorPage404();
 		}
-		// создаем контроллер
-		if ($controller_name == "Controller_Users") {
-			$filename = "apps/db/users.txt";
-			$file_content = file_get_contents($filename);
-			$controller = new $controller_name($model_users, $file_content);
-			$action = $action_name;
-		} else {
-			$controller = new $controller_name;
-			$action = $action_name;
-		}
 
+		$controller = new $controller_name;
+		$action = $action_name;
 
 		if(method_exists($controller, $action))
 		{

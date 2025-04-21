@@ -1,1 +1,1 @@
-name John age 33 gender male,name David age 21 gender male,name Daniil age 16 gender Male ,name Maria age 27 gender Female ,name Daria age 34 gender Female 
+name John age 33 gender male,name David age 21 gender male,name Daniil age 16 gender Male ,name Maria age 27 gender Female ,name Daria age 34 gender Female ,name Давид age 21 gender Мужской ,name Диана age 18 gender Женский 46,name Natalie age 9 gender Female 34,name Анастасия age 7 gender Женский 53
