@@ -1,11 +1,11 @@
 <?php
 class Model
 {
-	public function get_data()
+	public function getData()
 	{
 	}
 
-	public function set_data($name, $age, $gender)
+	public function setData($name, $age, $gender)
 	{
 	}
 }

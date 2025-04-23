@@ -9,13 +9,13 @@ class Controller_Users extends Controller
 
 	function action_getData()
 	{
-		$users = $this->model->get_data();
+		$users = $this->model->getData();
 		$this->view->generate("users_view.php", $users);
 	}
 
     function action_setData()
 	{
-        $user = $this->model->set_data($_POST['name'], $_POST['age'], $_POST['gender']);
+        $user = $this->model->setData($_POST['name'], $_POST['age'], $_POST['gender']);
 		if ($user == null) {
 			echo "Пользователь слишком молод для добавления в базу данных!";
 		} else if (is_array($user)) {

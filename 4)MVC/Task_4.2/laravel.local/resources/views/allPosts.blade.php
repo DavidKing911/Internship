@@ -7,7 +7,7 @@
     </head>
     <body>
         @foreach ($posts as $post)
-            <p>Name - {{ $post->name }}, Age - {{ $post->age }}, Gender - {{ $post->gender }}, Post - {{ $post->post }}</p>
+            <p><b>Name</b> - {{ $post->name }}, <b>Age</b> - {{ $post->age }}, <b>Gender</b> - {{ $post->gender }}, <b>Post</b> - {{ $post->post }}</p>
         @endforeach
         <a href="/">Вернуться на главную</a>
     </body>

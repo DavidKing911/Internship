@@ -5,7 +5,7 @@ require_once 'core/controller.php';
 require_once 'core/route.php';
 Route::start(); // запускаем маршрутизатор
 
-function get_users_method() {
+function getUsersMethod() {
     $file_content = file_get_contents("apps/db/users.txt");
     $users = explode(",", $file_content);
     foreach ($users as $key => $user) {
@@ -14,15 +14,15 @@ function get_users_method() {
     return $users;
 }
 
-function add_user_method(string $usersData) {
+function addUserMethod(string $usersData) {
     return file_put_contents("apps/db/users.txt", $usersData, FILE_APPEND);
 }
 
-function user_verification($name, $age, $gender): array {
+function userVerification($name, $age, $gender): array {
     $err = [];
-    $name = clear_data($name);
-    $age = clear_data($age);
-    $gender = clear_data($gender);
+    $name = clearData($name);
+    $age = clearData($age);
+    $gender = clearData($gender);
 
     if (strlen($name) > 20 || empty($name)) {
         $err[] = '<small class="text-danger">Имя должно быть не больше 15 символов</small></br>';
@@ -38,7 +38,7 @@ function user_verification($name, $age, $gender): array {
     return $err;
 }
 
-function clear_data($value): string {
+function clearData($value): string {
     $value = trim($value);
     $value = stripslashes($value);
     $value = strip_tags($value);

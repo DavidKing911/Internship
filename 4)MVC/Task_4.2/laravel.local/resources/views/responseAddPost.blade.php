@@ -6,13 +6,11 @@
         <title>Response Add</title>
     </head>
     <body>
-        <!-- <style>
-            .text-danger {color: red};
-        </style> -->
-        
         <p>
-            <a href="/addPost">Добавить ещё пользователя</a></br>
-            <a href="/allPosts">Показать всех пользователей</a></br>
+            <h2>Пост успешно добавлен в базу данных!</h2>
+            </br>
+            <a href="/addPost">Добавить ещё пост</a></br>
+            <a href="/allPosts">Показать все посты</a></br>
         </p>
     </body>
 </html>

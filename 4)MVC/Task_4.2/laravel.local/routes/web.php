@@ -10,12 +10,10 @@ use App\Http\Controllers\PostsController;
 //     return view('welcome');
 // });
 
-Route::get('/', [MainController::class, 'action']);
+Route::get(uri: '/', action: [MainController::class, 'action']);
 
-Route::get('/addPost', [AddPostController::class, 'action']);
+Route::get(uri: '/addPost', action: [AddPostController::class, 'action']);
 
-Route::get('/responseAdd', [PostsController::class, 'showResponseAdd']);
+Route::get(uri: '/responseAdd', action: [PostsController::class, 'showResponseAdd']);
 
-Route::get('/allPosts', [PostsController::class, 'getPosts']);
-
-Route::get('/user', [UserController::class, 'show']);
+Route::get(uri: '/allPosts', action: [PostsController::class, 'getPosts']);

@@ -18,10 +18,6 @@
                 'gender' => $_GET['gender'],
                 'post' => $_GET['post'],
             ]);
-            // echo $_GET['name'];
-            // echo $_GET['age'];
-            // echo $_GET['gender'];
-            // echo $_GET['post'];
             return view("responseAddPost");
         }
 	}
