@@ -6,7 +6,7 @@
     <title>Add Post</title>
 </head>
 <body>
-    <form action="/responseAdd" method="GET">
+    <form action="/posts/response" method="GET">
         <label>Имя:</label>
         <input name="name" type="text"></br></br>
         <label>Возраст:</label>
