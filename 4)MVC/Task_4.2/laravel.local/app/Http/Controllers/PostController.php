@@ -1,6 +1,7 @@
 <?php
 	namespace App\Http\Controllers;
     use App\Models\Post;
+    use Posts\Users;
     use Illuminate\Http\Request;
 	
 	class PostController extends Controller
@@ -11,18 +12,30 @@
             return view("allPosts", ["posts" => $posts]);
         }
 
-        public function showResponseAdd(Request $request)
+        public function addPost(Request $request)
 		{
-            $post = new Post;
-            $data = $request->all();
+            $data = $request->validate([
+                "name" => ['bail', 'required', 'string', 'max:15'],
+                "age" => ['bail', 'required', 'numeric', 'max:99'],
+                "gender" => ['bail', 'required', 'string', 'max:10'],
+                "post" => ['bail', 'required', 'string', 'max:1000'],
+            ]);
 
-            $post->name = $data['name'];
-            $post->age = $data['age'];;
-            $post->gender = $data['gender'];;
-            $post->post = $data['post'];;
-            
-            $post->save();
-            return view("responseAddPost");
+            $post = new Post;
+            $user = new Users;
+
+            if ($user->ageCheck($data['age'], $data['gender'])) {
+                $post->name = $data['name'];
+                $post->age = $data['age'];
+                $post->gender = $data['gender'];
+                $post->post = $data['post'];
+                $post->save();
+            } else {
+                $request->validate([
+                    "age" => ['min:10']
+                ]);
+            }
+            return view("addPost");
         }
 	}
 ?>

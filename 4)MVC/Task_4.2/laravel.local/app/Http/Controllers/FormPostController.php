@@ -1,11 +1,11 @@
 <?php
 	namespace App\Http\Controllers;
 	
-	class AddPostController extends Controller
+	class FormPostController extends Controller
 	{
 		public function action()
 		{
-            return view("addPost");
+            return view("formPost");
         }
 	}
 ?>

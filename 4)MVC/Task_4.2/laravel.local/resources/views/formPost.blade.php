@@ -6,7 +6,22 @@
     <title>Add Post</title>
 </head>
 <body>
-    <form action="/posts/response" method="GET">
+    <style>
+        .alert {color: red;}
+    </style>
+
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+    <form action="/posts/add" method="POST">
+        @csrf
         <label>Имя:</label>
         <input name="name" type="text"></br></br>
         <label>Возраст:</label>
