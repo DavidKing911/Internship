@@ -22,18 +22,18 @@
             ]);
 
             $post = new Post;
-            $user = new Users;
+            $user = new Users($data['name'], $data['age'], $data['gender'], $data['post']);
 
-            if ($user->ageCheck($data['age'], $data['gender'])) {
+            if ($user->ageCheck()) {
+                $request->validate([
+                    "age" => ['min:10']
+                ]);
+            } else {
                 $post->name = $data['name'];
                 $post->age = $data['age'];
                 $post->gender = $data['gender'];
                 $post->post = $data['post'];
                 $post->save();
-            } else {
-                $request->validate([
-                    "age" => ['min:10']
-                ]);
             }
             return view("addPost");
         }
