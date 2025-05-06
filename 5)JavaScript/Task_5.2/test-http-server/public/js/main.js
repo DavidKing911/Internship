@@ -2,14 +2,18 @@
 $('form').on('submit', function(event) {
 	event.preventDefault();
     
-	fetch('/form/', {
+	let promise = fetch('/form/', {
 		method: 'POST',
 		body: new FormData(this) // передаем ссылку на форму
-	}).then(response => {
-        return response.text();
-    }).then(data => {
-        addTable(data);
-    });
+	});
+
+    if ($('.tbody').is(':empty')) {
+        promise.then(response => {
+            return response.text();
+        }).then(data => {
+            addTable(data);
+        })
+    }
 
 	$('#name').val('');
     $('#comment').val('');
@@ -23,7 +27,7 @@ $('.comments').on('click', event => {
         return response.text();
     }).then(data => {
         addTable(data);
-    });
+    }); 
 });
 
 // Функция для создания таблицы и внесения данных из базы данных
@@ -73,6 +77,7 @@ function changeBtn(event) {
     
     $('#name').val(name);
     $('#comment').val(comment);
+
     let btn = $('<input class="changeBtn" value="Изменить данные" type="submit">');
     $('form').append(btn);
     $('.send').prop('disabled', true);
@@ -130,7 +135,6 @@ function deleteBtn(event) {
 // Функция для обработчика события скрытия всех данных пользователей
 function hideBtn(event) {
     event.preventDefault();
-
     $('.tbody').html('');
     $('.thead').html('');
     $('.hide').remove();
