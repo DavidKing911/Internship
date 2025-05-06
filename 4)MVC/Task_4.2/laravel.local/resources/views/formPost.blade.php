@@ -10,12 +10,18 @@
         .alert {color: red;}
     </style>
 
-    @if ($errors->any())
+    @if ($errors->any() || $modelErrors)
         <div class="alert alert-danger">
             <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
+                @if ($errors->any())
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                @else
+                    @foreach ($modelErrors as $modelError)
+                        <li>{{ $modelError }}</li>
+                    @endforeach
+                @endif
             </ul>
         </div>
     @endif

@@ -23,11 +23,26 @@
 
             $post = new Post;
             $user = new Users($data['name'], $data['age'], $data['gender'], $data['post']);
+            $modelErrors = [];
 
+            if ($user->getValidatedName()) {
+                $modelErrors[] = $user->getValidatedName();
+            }
+            if ($user->getValidatedAge()) {
+                $modelErrors[] = $user->getValidatedAge();
+            }
+            if ($user->getValidatedGender()) {
+                $modelErrors[] = $user->getValidatedGender();
+            }
+            if ($user->getValidatedPost()) {
+                $modelErrors[] = $user->getValidatedPost();
+            }
             if ($user->ageCheck()) {
-                $request->validate([
-                    "age" => ['min:10']
-                ]);
+                $modelErrors[] = $user->ageCheck();
+            }
+
+            if ($modelErrors) {
+                return view("formPost", ["modelErrors" => $modelErrors]);
             } else {
                 $post->name = $data['name'];
                 $post->age = $data['age'];
@@ -35,6 +50,7 @@
                 $post->post = $data['post'];
                 $post->save();
             }
+            
             return view("addPost");
         }
 	}

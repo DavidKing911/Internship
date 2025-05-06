@@ -5,7 +5,7 @@
 	{
 		public function action()
 		{
-            return view("formPost");
+            return view("formPost", ["modelErrors" => []]);
         }
 	}
 ?>
