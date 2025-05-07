@@ -119,7 +119,7 @@ function deleteBtn(event) {
     let comment = row.children[1].textContent;
     name = encodeURIComponent(name);
     comment = encodeURIComponent(comment);
-    fetch('/deleteUser/', {
+    fetch('/users/userId/comments/commentId', {
         method: 'POST',
         body: 'name=' + name + '&' + 'comment=' + comment,
         headers: {
