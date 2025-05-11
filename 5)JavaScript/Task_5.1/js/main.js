@@ -22,7 +22,7 @@ $('#btn').click(() => {
 		if (isDanger) {
 			paragraph.append("Ситуация опасная");
 		} else {
-			paragraph.append("Ситуация не опасная");
+			paragraph.append("NO");
 		}
 		paragraph.css({'color': 'black'})
 	}
