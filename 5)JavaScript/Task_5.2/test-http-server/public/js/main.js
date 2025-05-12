@@ -166,3 +166,22 @@ function checkInputs() {
 }
 
 // Обработчик события нажатия на страницу
+$(document).on('click', event => {
+    if (event.target.value === "Отправить") {
+        if (!checkInputs()) {
+            sendForm(event);
+        }
+    } else if (event.target.textContent.trim() === "Посмотреть комментарии") {
+        showComments(event);
+    } else if (event.target.textContent.trim() === "Изменить") {
+        id = changeComment(event);
+    } else if (event.target.value === "Изменить данные") {
+        saveChangingComment(event, id);
+    } else if (event.target.textContent.trim() === "Удалить") {
+        deleteComments(event)
+    } else if (event.target.textContent.trim() === "Скрыть комментарии") {
+        hideComments(event);
+    }
+
+    event.preventDefault();
+});
